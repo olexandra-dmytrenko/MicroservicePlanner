@@ -73,13 +73,13 @@ plt.axvline(np.where(time_series == extremes[0])[0][0], color='g', linestyle='do
 plt.axvline(np.where(time_series == final_extremes[0])[0][0], color='b', linestyle='dashed', label='Початок розширеного екстремуму')
 plt.axvline(np.where(time_series == extremes[-1])[0][-1], color='g', linestyle='dotted', label='Кінець екстремуму')
 plt.axvline(np.where(time_series == final_extremes[-1])[0][-1], color='b', linestyle='dashed', label='Кінець розширеного екстремуму')
-plt.axhline(y=new_max_value, color='r', linestyle='--', label=f'Лінія поділу = {new_max_value}')
-plt.axhline(y=mean, color='c', linestyle='dashdot', label=f'Середнє =  {mean:.2f}')
-plt.axhline(y=mean + std_dev, color='y', linestyle='dotted', label=f'Середнє + cтандратне відхилання = {mean + std_dev:.2f}')
-plt.axhline(y=mean - std_dev, color='y', linestyle='dotted', label=f'Середнє - cтандратне відхилання = {mean - std_dev:.2f}')
-plt.title('Виділення часової рамки та навантаження для створення окремого екземпляру мікросервіса', loc='center')
+plt.axhline(y=new_max_value, color='r', linestyle='--', label=f'Лінія поділу = {new_max_value} од.')
+plt.axhline(y=mean, color='c', linestyle='dashdot', label=f'Середнє =  {mean:.2f} од.')
+plt.axhline(y=mean + std_dev, color='y', linestyle='dotted', label=f'Середнє + стандартне відхилення = {mean + std_dev:.2f} од.')
+plt.axhline(y=mean - std_dev, color='y', linestyle='dotted', label=f'Середнє - стандартне відхилення = {mean - std_dev:.2f} од.')
+plt.title('Виділення часової рамки та навантаження для створення окремого екземпляра мікросервісу', loc='center')
 plt.xlabel('Години')
-plt.ylabel('Навантаження')
+plt.ylabel('Навантаження, од.')
 plt.legend()
 plt.show()
 
@@ -94,17 +94,17 @@ above_new_max = np.where(time_series > new_max_value, time_series - new_max_valu
 fig, axs = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
 # Графік 1
-axs[0].plot(modified_series, label='Навантаження без піку', color='b')
-axs[0].set_title('Навантаження ≤ за максимальне дозволене (35)')
-axs[0].set_ylabel('Навантаження стандартне')
-axs[0].axhline(y=new_max_value, color='r', linestyle='--', label='Обмеження максимумом = 35')
+axs[0].plot(modified_series, label='Навантаження без піка', color='b')
+axs[0].set_title('Навантаження ≤ за максимальне дозволене (35 од.)')
+axs[0].set_ylabel('Навантаження стандартне, од.')
+axs[0].axhline(y=new_max_value, color='r', linestyle='--', label='Обмеження максимумом = 35 од.')
 axs[0].legend()
 axs[0].grid()
 
 # Графік 2
-axs[1].plot(above_new_max, label='Навантаження > за максимальне дозволене (35)', color='g')
+axs[1].plot(above_new_max, label='Навантаження > за максимальне дозволене (35 од.)', color='g')
 axs[1].set_title('Пікове навантаження, винесене в окремий сервіс')
-axs[1].set_ylabel('Навантаження підвищене')
+axs[1].set_ylabel('Навантаження підвищене, од.')
 axs[1].legend()
 axs[1].grid()
 
